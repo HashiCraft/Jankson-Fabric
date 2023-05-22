@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.1-SNAPSHOT'
+	id 'fabric-loom' version '1.2-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -44,28 +44,4 @@ java {
 jar {
 	//baseName = "Jankson"
 	from "LICENSE"
-}
-
-// configure the maven publication
-publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			from components.java
-		}
-	}
-
-	// select the repositories you want to publish to
-	repositories {
-		if (project.hasProperty("artifactoryUsername")) {
-			maven {
-				url = "https://server.bbkr.space/artifactory/libs-release/"
-				credentials {
-					username = artifactoryUsername
-					password = artifactoryPassword
-				}
-			}
-		} else {
-			println "Cannot configure artifactory; please define ext.artifactoryUsername and ext.artifactoryPassword before running publish"
-		}
-	}
 }
